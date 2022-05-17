@@ -45,6 +45,7 @@ function seleccionCaracteristicas (producto){
                 material = prompt('Selecciona el Material \n -ALGODÓN (1)\n -POLIESTER (2)\n -LINO (3)\n -MEZCLILLA (4) \n -DISEÑO (5)' );
                 precio = pantalon;
                 //cantidadIndu = prompt('ingrese la cantidad de Pantalones que desea comprar');
+
                 memoria(precio);
                 caracteristicas(tipo,talle,precio,color,material);
             }
@@ -243,14 +244,12 @@ function caracteristicas(tipo,talle,precio,color,material){
 
     creadorObjeto(tipo,talle,precio,color,material);
 }
-function creadorObjeto(tipo,talle,precio,color,material){   
+function creadorObjeto(tipo,talle,precio,color,material){ 
+
     const nuevaCompra = new indumentaria(tipo,talle,precio,color,material)
-    //console.log(nuevaCompra); 
 
     listaCompras.push(nuevaCompra);
 
-    console.log(listaCompras);
-    
     return listaCompras
 }
 let memoria = (a) =>{
@@ -270,7 +269,9 @@ do {
     }  
 }while (door == 'y' || door == 'Y');
 
+console.log(listaCompras);
 alert('Proceso Finalizado. \n El total de tu compra es:  '+ Number(totalCompras) +' \n La cantidad de productos comprados es de : '+ Number(listaCompras.length) +'\n | VER EN CONSOLA SUS COMPRAS Y CARACTERISTICAS |');
+
 
 /* NOTA:   CARRITO DE COMPRAS CON FUNCIONES Y OBJETO
         PROGRAMA PRINCIPAL 1 BUBLE(DO WHILE) Y 4 FUNCIONES 
