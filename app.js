@@ -14,6 +14,7 @@ let caracteristica;
 let producto; 
 let door = '';
 let totalCompras = 0;
+let fecha = new Date();
 
 let listaCompras = [];
 
@@ -258,10 +259,13 @@ let memoria = (a) =>{
     return totalCompras
 }
 
+
+
 /* MAIN */
 alert('| Bienvenido a tienda AIVA |  \n A continuacion ingrese el codigo de los articulos que desee comprar. para finalizar ingrese (N) \n Gracias! ' )
 
 do {
+    
     door = prompt  ('Desea continuar operando? Ingrese (Y) para continuar ó (N) para finalizar el proceso');
     if( door == 'y' || door == 'Y'  ) {
         producto = prompt('- TIENDA DE ROPA - \n | Articulos en venta |  \n Para seleccionar un producto ingrese el numero del mismo. \n -Pantalon | Numero de producto (1)\n -Remera | Numero de producto (2)\n -Buzo | Numero de producto (3)\n -Gorras | Numero de producto (4)\n -Accesorio| Numero de producto (5)\n)' )
@@ -270,7 +274,7 @@ do {
 }while (door == 'y' || door == 'Y');
 
 console.log(listaCompras);
-alert('Proceso Finalizado. \n El total de tu compra es:  '+ Number(totalCompras) +' \n La cantidad de productos comprados es de : '+ Number(listaCompras.length) +'\n | VER EN CONSOLA SUS COMPRAS Y CARACTERISTICAS |');
+alert('Proceso Finalizado.\n Fecha de la compra: '+ fecha.toLocaleString()+' \n El total de tu compra es:  '+ Number(totalCompras) +' \n La cantidad de productos comprados es de : '+ Number(listaCompras.length) +'\n | VER EN CONSOLA SUS COMPRAS Y CARACTERISTICAS |');
 
 
 /* NOTA:   CARRITO DE COMPRAS CON FUNCIONES Y OBJETO
