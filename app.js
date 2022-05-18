@@ -259,8 +259,6 @@ let memoria = (a) =>{
     return totalCompras
 }
 
-
-
 /* MAIN */
 alert('| Bienvenido a tienda AIVA |  \n A continuacion ingrese el codigo de los articulos que desee comprar. para finalizar ingrese (N) \n Gracias! ' )
 
