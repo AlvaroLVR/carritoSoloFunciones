@@ -22,7 +22,7 @@ let listaCompras = [];
 ************************************AGREGANDO CLASES DE OBJETOS AL CARRITO*********************************************
 ******************************************************************************************************************** */
 
-class indumentaria{
+class indumentariaVendida{
     constructor(tipo,talle,precio,color,material){
         this.tipo = tipo;
         this.talle = talle;
@@ -32,9 +32,25 @@ class indumentaria{
         this.vendido = false;
     }
     iva() {
-        this.precio = this.precio * 1.21;
+        this.precio = precio * 1.21;
     }
 }
+
+/* class indumentariaRegistrada{
+    constructor(tipo,talle,precio,color,material,codigo){
+        this.tipo = tipo;
+        this.talle = talle;
+        this.precio = precio;
+        this.color = color;
+        this.material = material;
+        this.codigo = codigo;
+        this.vendido = false;
+    }
+    iva() {
+        this.precio = precio * 1.21;
+    }
+} */
+
 function seleccionCaracteristicas (producto){
     switch ( parseFloat(producto)) {
         case 1: //Pantalon
@@ -260,6 +276,7 @@ let memoria = (a) =>{
 }
 
 /* MAIN */
+
 alert('| Bienvenido a tienda AIVA |  \n A continuacion ingrese el codigo de los articulos que desee comprar. para finalizar ingrese (N) \n Gracias! ' )
 
 do {
@@ -268,21 +285,26 @@ do {
     if( door == 'y' || door == 'Y'  ) {
         producto = prompt('- TIENDA DE ROPA - \n | Articulos en venta |  \n Para seleccionar un producto ingrese el numero del mismo. \n -Pantalon | Numero de producto (1)\n -Remera | Numero de producto (2)\n -Buzo | Numero de producto (3)\n -Gorras | Numero de producto (4)\n -Accesorio| Numero de producto (5)\n)' )
         seleccionCaracteristicas(producto); 
-    }  
+    } 
+
 }while (door == 'y' || door == 'Y');
 
 console.log(listaCompras);
 alert('Proceso Finalizado.\n Fecha de la compra: '+ fecha.toLocaleString()+' \n El total de tu compra es:  '+ Number(totalCompras) +' \n La cantidad de productos comprados es de : '+ Number(listaCompras.length) +'\n | VER EN CONSOLA SUS COMPRAS Y CARACTERISTICAS |');
 
+/* ***************************************************************************************************************************************** *************************************************************DOM**************************************************************************
+****************************************************************************************************************************************** */
+let cantidadHTML = document.getElementById("cantidadHTML");
+    cantidadHTML.innerText = listaCompras.length;
+for (const datosArray of listaCompras) {
+    
+    let categoriaHTML = document.getElementById("categoriaHTML");
+    categoriaHTML.innerText = datosArray.tipo;
 
-/* NOTA:   CARRITO DE COMPRAS CON FUNCIONES Y OBJETO
-        PROGRAMA PRINCIPAL 1 BUBLE(DO WHILE) Y 4 FUNCIONES 
-        
-        A traves del primer bucle se le pregunta al usuario que tipo de producto quiere comprar. una vez elegida la opción se la guarda y se envia a seleccionCaracteristicas() elige el tipo de ropa que quiere comprar, las caracteristicas se eligen en la funcion caracteristicas() una vez que el usuario elige los datos se mandan a creadorObjeto para crear y mostrar por consola los nuevos obajetos. la funcion memoria() guarda el dato del precio y cantidad de articulos comprados para mostrarlos al finalizar la compra. 
-        
-        FUNCION seleccionCaracteristicas: recibe 1 dato, producto. este dato se coloca en un switch que elige e case correspondiente con el producto, una vez dentro se le asigan los datos y se los envia a la funcion caracteristicas().
+    let colorHTML = document.getElementById("colorHTML");
+    colorHTML.innerText = datosArray.color;
 
-
-        FUNCION caracteristicas: 
-        FUNCION creadorObjeto
-        FUNCION memoria  */
+    let talleHTML = document.getElementById("talleHTML");
+    talleHTML.innerText = datosArray.talle;
+     
+}

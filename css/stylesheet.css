@@ -2,18 +2,12 @@
     box-sizing: border-box;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0;
+    padding: 0;
 }
-.main{
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 255, 234, 0.2);
-    padding: 8px;
-    height: 80vh;
-    width: 90vw;
-    margin: 30px auto auto auto;
-    border: 3px solid black;
+.displayNone{
+    display: none;
 }
-.ejercicios{
-    display: flex;
-    justify-content: center;
+
+.displayActive{
+    visibility: visible;
 }
