@@ -12,3 +12,36 @@
 .displayActive{
     visibility: visible;
 }
+
+.fav{
+    height: 41px;
+    width: 41px;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+.fav:hover{
+    fill:red !important;
+}
+
+.carritoVentana{
+    display:none !important;
+
+    height: 400px;
+    width: 70vw;
+    z-index: 1;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 8% auto 0 auto;
+}
+
+.cross{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    left: 869px;
+}

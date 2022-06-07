@@ -1,4 +1,9 @@
 // Carrito de Compras
+/* FEATURES: BOTON DE FAVORITO - TOTALIZAR LA COMPRA CON TODOS LOS ARTICULO AGREGADOS AL CARRITO - OPCIONES DE PRECIO USD/EURO/ -
+AGREGAR UN SUMADOR DE PRODUCTOS AL CARRITO DE COMPRAS 
+ */
+let objetoComparador = {};
+
 let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S',codigo:'1000'},
 { producto:'pantalon' ,  precio: '3400',color:'negro',talle:'L',codigo:'1000'},
 { producto:'pantalon' ,  precio: '3400',color: 'blanco',talle:'M',codigo:'1001'},
@@ -28,12 +33,15 @@ let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S
 let guardarLocal = (clave,valor) =>{ localStorage.setItem(clave,valor)};
 guardarLocal('inventario',JSON.stringify(inventario));
 
-let objetoComparador = {};
+
+escribirHTML(inventario)
+// BOTON AGREGAR/QUITAR A FAVORITO 
+
 
 // PEDIR TIPO DE ROPA
 
 let tipoRopa = document.getElementById("tipoRopa");
-tipoRopa.addEventListener("change", MostrarTipoRopa = () =>{   objetoComparador.producto = tipoRopa.value });
+tipoRopa.addEventListener("change", MostrarTipoRopa = () =>{   objetoComparador.producto = tipoRopa.value  });
 
 // PEDIR COLORES 
 
@@ -87,38 +95,70 @@ botonPedir.addEventListener('click',tomarDatos = () =>{
     buscadorInventario(objetoComparador);
 });
 
+// ingresan objetos y busca objetos / a ingresar palabras y buscar objetos. 
+
 function buscadorInventario(a){
-    console.log('este es el nombre del producto',a.producto);
     let array = inventario.filter(i => (i.producto == a.producto) && ((i.talle == a.talle) || (i.color == a.color) || (i.codigo == a.codigo)))
     let resultadosBusqueda = document.getElementById('resultadosBusqueda');
     resultadosBusqueda.innerText = 'resultado de la busqueda: '+ array.length ;
-    console.log(array);
+    if (array == 0) {
+        console.log('vacio');
+    }
     escribirHTML(array);
 }
 
+function buscadorInventario2(a){
+    let array = inventario.filter(i => (i.producto == a))
+    let resultadosBusqueda = document.getElementById('resultadosBusqueda');
+    resultadosBusqueda.innerText = 'resultado de la busqueda: '+ array.length ;
+    escribirHTML(array);
+}
+
+/* recibe un objeto y lo convierte en card */
 function escribirHTML(a) {
     let catalogo = document.getElementById('catalogo');
     catalogo.innerHTML = ``;
     a.forEach(i => {
         let catalogoNew1 = document.createElement('div');
-        catalogoNew1.className = "col d-flex justify-content-center ";
         catalogoNew1.innerHTML= `
-            <div class="card " style="width: 18rem; height: 23rem; margin:12px;">
-                <img src="#" class="card-img-top" alt="tienda1" height="330px" width="280">
-                <div class="card-body">
-                    <h5 class="card-title">${i.producto}</h5>
-                    <p class="card-text">Talles: ${i.talle}</p>
-                    <p class="card-text">Color: ${i.color}</p>
-                    <p class="card-text">Codigo: ${i.codigo}</p>
+        <div class="d-flex shadow flex-row mb-3 p-2 align-items-center justify-content-between" style="width: auto; height: auto;position: relative">
+            <svg class="fav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"> <path fill="#e4e6e8" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/></svg>
+            <div class="d-flex flex-row">
+                <img src="./img/${i.producto}.jpg" class="border border-1 border-ligth rounded-1 imagen" alt="tienda1" height="200px" width="250">
+                <div class="ms-5">
+                    <h5 class="">${i.producto}</h5>
+                    <p class="">Precio:$ ${i.precio}</p>
+                    <p class="">Talle: ${i.talle}</p>
+                    <p class="">Color: ${i.color}</p>
+                    <p class="">Codigo: ${i.codigo}</p>   
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">$${i.precio}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Comprar</a>
-                    <a href="#" class="card-link">Añadir al carrito</a>
-                </div>
-            </div>` 
+            </div>
+            <div class="d-flex flex-column justify-content-end me-4">
+                <button class="btn btn-secondary mb-3"><a href="#" class="text-light" style="text-decoration: none;">Comprar</a></button>
+                <button class="btn btn-secondary "><a href="#" class="text-light" style="text-decoration: none;">Añadir al carrito</a></button>
+            </div>
+        </div>` 
         catalogo.appendChild(catalogoNew1); 
     });
 } 
+
+// BUSCADOR DEL SITIO 
+
+let buscador = document.getElementById('buscador');
+buscador.addEventListener('change', buscar = ()=>{
+    buscadorInventario2(buscador.value);  
+})
+
+// CARRITO 
+let carrito = document.getElementById('carrito');
+carrito.addEventListener('click',mostrar = ()=>{
+    carritoVentana.style.display = 'active';
+} )
+let carritoVentana = document.getElementById('carritoVentana')
+let cross = document.getElementById('cross');
+cross.addEventListener('click',ocultar = () =>{ 
+    console.log('presionaste la x');
+   
+    carritoVentana.style.display = 'none';
+     
+})
