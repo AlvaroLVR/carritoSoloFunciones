@@ -82,9 +82,7 @@ codigo.addEventListener("change",tomarCodigo = () =>{
 // FILTROS NUMERICOS
 
 function vericicacionNumerica(a){
-    if(isNaN(codigoCompra.value)){
-        alert('Ingrese Números')
-    }
+    isNaN(codigoCompra.value) ? alert('Ingrese Números') : '';
 }
 
 // FUNCION RECIBIDORA DE DATOR E IMPRIMIR HMTML
@@ -101,10 +99,8 @@ function buscadorInventario(a){
     let array = inventario.filter(i => (i.producto == a.producto) && ((i.talle == a.talle) || (i.color == a.color) || (i.codigo == a.codigo)))
     let resultadosBusqueda = document.getElementById('resultadosBusqueda');
     resultadosBusqueda.innerText = 'resultado de la busqueda: '+ array.length ;
-    if (array == 0) {
-        console.log('vacio');
-    }
-    escribirHTML(array);
+    (array == 0 ) ? console.log('vacio') : '';
+    escribirHTML(array); 
 }
 
 function buscadorInventario2(a){
@@ -150,15 +146,17 @@ buscador.addEventListener('change', buscar = ()=>{
 })
 
 // CARRITO 
+let carritoVentana = document.getElementById('carritoVentana');
+carritoVentana.className = 'carritoVentanaNone border shadow rounded-2 bg-light d-flex flex-column';
+
 let carrito = document.getElementById('carrito');
-carrito.addEventListener('click',mostrar = ()=>{
-    carritoVentana.style.display = 'active';
-} )
-let carritoVentana = document.getElementById('carritoVentana')
+carrito.addEventListener('click', hola = ()=>{
+    console.log('presionaste el carrito');
+    carritoVentana.className = 'carritoVentanaActive border shadow rounded-2 bg-light d-flex flex-column';
+});
+
 let cross = document.getElementById('cross');
-cross.addEventListener('click',ocultar = () =>{ 
-    console.log('presionaste la x');
-   
-    carritoVentana.style.display = 'none';
-     
+cross.addEventListener('click',hola= ()=>{
+    console.log('presionaste la cruz');
+    carritoVentana.className = 'carritoVentanaNone border shadow rounded-2 bg-light d-flex flex-column';
 })
