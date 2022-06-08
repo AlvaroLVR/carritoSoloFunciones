@@ -15,7 +15,7 @@
     <!--CSS SASS-->
     <link rel="stylesheet" href="./css/stylesheet.css">
 </head>
-  <body style="position: relative;">
+  <body >
 
     <!--HEADER--> 
 
@@ -44,8 +44,9 @@
                 <a class="nav-link" href="#"><img src="./img/iconoUsuario.svg" alt="usuario" height="25px" width="25px"></a>
               </li> -->
               
-              <li class="nav-item">
-                <a id="carrito" class="nav-link me-5" href="#"><img src="./img/iconoCarrito.svg" alt="carrito" height="25px" width="25px"></a>
+              <li class="nav-item d-flex flex-row me-5" style="font-size: x-small;">
+                <a id="carrito" class="nav-link" href="#"><img src="./img/iconoCarrito.svg" alt="carrito" height="25px" width="25px"></a>
+                <p id="cFav"></p>
               </li>
             </ul>
           </div>
@@ -64,10 +65,11 @@
     <!--MAIN-->
 
     <div id="carritoVentana" >
-      <svg id="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="height: 25px;width: 25px;position: absolute;left: 869px"> <path fill="grey" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
-
-      <h4 class="my-3 ms-2">Carrito</h4> 
-      <div class=" container">
+      <div class="d-flex justify-content-between">
+        <h4 class="my-3 ms-2">Carrito</h4> 
+        <svg id="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="height: 25px;width: 25px;"> <path fill="grey" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+      </div>
+      <div class=" container-fluid">
         <div class="row border-bottom border-dark">
           <div class="col">producto</div>
           <div class="col">precio</div>
@@ -76,7 +78,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
       <div class="row  justify-content-between" id="feedOriginal">
         <!--filtro-->
         <div class=" bg-light shadow " style="width: 25vw;">
@@ -170,18 +172,12 @@
       
             </div>
 
-            <!-- codigo -->
-            <div class="nav-item  d-flex flex-column codigo">
-              <h5 class=" fs-5 text-dark">Codigo</h5>
-              <input class="" type="text" placeholder="ingrese un código" id="codigoCompra">
-            </div>
-
             <button class="btn btn-primary m-3" id="buscar">buscar</button>
           </div>
         </div>
 
         <!--catalogo-->      
-        <div class="col-md-8 mt-3 me-3" id="catalogo"></div>
+        <div class="col-md-8 mt-3 d-flex flex-column justify-content-center me-5" id="catalogo"></div>
         
       </div>
     </div>
