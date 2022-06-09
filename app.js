@@ -3,6 +3,7 @@
  */
 let objetoComparador = {};
 
+
 let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S',codigo:'1000'},
 { producto:'pantalon' ,  precio: '3400',color:'negro',talle:'L',codigo:'1000'},
 { producto:'pantalon' ,  precio: '3400',color: 'blanco',talle:'M',codigo:'1001'},
@@ -100,6 +101,7 @@ function buscadorInventario2(a){
 }
 
 /* recibe un objeto y lo convierte en card */
+
 function escribirHTML(a) {
     let catalogo = document.getElementById('catalogo');
     catalogo.innerHTML = ``;
@@ -116,16 +118,31 @@ function escribirHTML(a) {
                     <p class="">Precio:$ ${i.precio}</p>
                     <p class="">Talle: ${i.talle}</p>
                     <p class="">Color: ${i.color}</p>
-                    <p class="">Codigo: ${i.codigo}</p>   
+                    <p class="codigo">Codigo: ${i.codigo}</p>   
                 </div>
             </div>
 
             <div class="d-flex flex-column justify-content-end me-4" id="botones">
-                <button class="btn btn-secondary mb-3"><a href="#" class="text-light" style="text-decoration: none;">Comprar</a></button>
-                <button class="btn btn-secondary"><a href="#" id="agregarCarrito" class="text-light" style="text-decoration: none;">Añadir al carrito</a></button>
+                <button class="btn btn-success mb-3">Comprar</button>
+                <button class="btn btn-success aCarrito">Añadir al carrito</button>
             </div>
         </div>` 
         catalogo.appendChild(catalogoNew1); 
+    });
+    //TOASTIFY 
+    let aCarrito = document.querySelectorAll('.aCarrito');
+    aCarrito.forEach( el => {
+        console.log('hola');
+        el.addEventListener('click',()=>{
+            Toastify({
+                text: "articulo agregado al carrito",
+                className: "info",
+                duration:2500,
+                style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        })
     });
 } 
 
@@ -151,11 +168,4 @@ cross.addEventListener('click',hola= ()=>{
     console.log('presionaste la cruz');
     carritoVentana.className = 'carritoVentanaNone border shadow rounded-2 bg-light d-flex flex-column';
 })
-
-
-// AGREGAR AL CARRITO
-
-let datosCard = document.getElementById('datosCard');
-let botonAgregar = document.getElementById('agregarCarrito');
-
 

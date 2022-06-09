@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <!--CSS SASS-->
     <link rel="stylesheet" href="./css/stylesheet.css">
+    <!--TOASTIFY-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
   <body >
 
@@ -70,11 +72,36 @@
         <svg id="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="height: 25px;width: 25px;"> <path fill="grey" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
       </div>
       <div class=" container-fluid">
-        <div class="row border-bottom border-dark">
-          <div class="col">producto</div>
-          <div class="col">precio</div>
-          <div class="col d-flex justify-content-center">cantidad</div>
-        </div>
+      <table>
+        <table id='table' class="table">
+          <thead>
+            <tr>
+              <th scope="col">código</th>
+              <th scope="col">producto</th>
+              <th scope="col">precio</th>
+              <th scope="col">cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -196,12 +223,15 @@
 
     <script src="./app.js"></script>
     
-    <!--SCRIPT BOOTSTRAP-->
 
+    <!--TOASTIFY-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!--SCRIPT BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous">
     </script>
+
 
   </body>
 </html>
