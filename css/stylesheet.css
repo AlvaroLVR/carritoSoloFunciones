@@ -49,3 +49,12 @@
     margin: 8% auto 0 auto;
 }
 
+.rojo{
+    fill: red;
+}
+
+.aCarrito{
+    position: relative;
+    left: 350px;
+    bottom: 50px;
+}

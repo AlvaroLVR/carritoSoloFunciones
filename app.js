@@ -4,7 +4,7 @@
 let objetoComparador = {};
 
 
-let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S',codigo:'1000'},
+let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S',codigo:'0000'},
 { producto:'pantalon' ,  precio: '3400',color:'negro',talle:'L',codigo:'1000'},
 { producto:'pantalon' ,  precio: '3400',color: 'blanco',talle:'M',codigo:'1001'},
 { producto:'pantalon' ,  precio: '3400',color: 'jean',talle:'XL',codigo:'1002'},
@@ -33,8 +33,16 @@ let inventario = [{ producto: 'pantalon' , precio: '3400',color:'negro',talle:'S
 let guardarLocal = (clave,valor) =>{ localStorage.setItem(clave,valor)};
 guardarLocal('inventario',JSON.stringify(inventario));
 
-
+//localStorage.clear();
 escribirHTML(inventario)
+
+
+function limpiarStorage(a){
+    localStorage.clear();
+}
+function removerStorage(a){
+    localStorage.removeItem(a);
+}
 
 // PEDIR TIPO DE ROPA
 
@@ -108,42 +116,29 @@ function escribirHTML(a) {
     a.forEach(i => {
         let catalogoNew1 = document.createElement('div');
         catalogoNew1.innerHTML= `
-        <div class="d-flex shadow flex-row mb-3 p-2 align-items-center justify-content-between bg-light rounded-1" style="width: auto; height: auto;position: relative">
-            <svg class="fav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"> <path fill="#e4e6e8" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/></svg>
+        <div class="tarjeta d-flex shadow flex-row mb-3 p-2 align-items-center justify-content-between bg-light rounded-1" style="width: auto; height: auto;position: relative">
 
-            <div class="d-flex flex-row" >
+        <svg class="fav " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"> <path class="botonFavorito" fill="#e4e6e8" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/></svg>
+
+            <div class="d-flex flex-row " >
                 <img src="./img/${i.producto}.jpg" class="border border-1 border-ligth imagen" alt="tienda1" height="200px" width="250">
-                <div class="ms-5" id="datosCard">
-                    <h5 class="">${i.producto}</h5>
-                    <p class="">Precio:$ ${i.precio}</p>
-                    <p class="">Talle: ${i.talle}</p>
-                    <p class="">Color: ${i.color}</p>
-                    <p class="codigo">Codigo: ${i.codigo}</p>   
+                <div class="ms-5 datosCard" id="datosCard">
+                    <h5 class="producto">${i.producto}</h5>
+                    <p class="precio"> ${i.precio}</p>
+                    <p class="talle"> ${i.talle}</p>
+                    <p class="color"> ${i.color}</p>
+                    <p class="codigo"> ${i.codigo}</p>  
+                    <button class="btn btn-success aCarrito ">Añadir al carrito</button> 
                 </div>
             </div>
 
-            <div class="d-flex flex-column justify-content-end me-4" id="botones">
-                <button class="btn btn-success mb-3">Comprar</button>
-                <button class="btn btn-success aCarrito">Añadir al carrito</button>
+            <div class="" id="botones">
+                
             </div>
         </div>` 
         catalogo.appendChild(catalogoNew1); 
     });
-    //TOASTIFY 
-    let aCarrito = document.querySelectorAll('.aCarrito');
-    aCarrito.forEach( el => {
-        console.log('hola');
-        el.addEventListener('click',()=>{
-            Toastify({
-                text: "articulo agregado al carrito",
-                className: "info",
-                duration:2500,
-                style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
-        })
-    });
+   
 } 
 
 // BUSCADOR DEL SITIO 
@@ -157,15 +152,95 @@ buscador.addEventListener('change', buscar = ()=>{
 let carritoVentana = document.getElementById('carritoVentana');
 carritoVentana.className = 'carritoVentanaNone border shadow rounded-2 bg-light d-flex flex-column';
 
-let carrito = document.getElementById('carrito');
+let carrito = document.getElementById('carrito'); // MOSTRAR VENTANA DE CARRITO
 carrito.addEventListener('click', hola = ()=>{
     console.log('presionaste el carrito');
     carritoVentana.className = 'carritoVentanaActive border shadow rounded-2 bg-light d-flex flex-column';
 });
 
-let cross = document.getElementById('cross');
+let cross = document.getElementById('cross'); // CERRAR VENTANA DE CARRITO
 cross.addEventListener('click',hola= ()=>{
     console.log('presionaste la cruz');
     carritoVentana.className = 'carritoVentanaNone border shadow rounded-2 bg-light d-flex flex-column';
 })
 
+let aCarrito = document.querySelectorAll('.aCarrito');
+
+aCarrito.forEach(ele => {
+    ele.addEventListener('click',capturador)
+});
+aCarrito.forEach(ele => {
+    ele.addEventListener('click',()=>{
+        Toastify({
+            text: "Agregado al carrito",
+            className: "info",
+            duration:1000,
+            style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    })
+});
+
+function capturador (e){
+    let evento =  e.target;  // toma los datos del evento
+    let datos = evento.closest('.datosCard'); //captura el elemento mas cercano
+    let codigo = datos.querySelector('.codigo').innerText; // lee el texto dentro del elemento con la clase .codigo
+    lista(codigo);  // envia el codigo del elemento seleccionado a la funcion lista.
+}
+
+// precio total 
+let pTotal = document.getElementById('precioTotal');
+let total=0;
+let c=0;
+function precioTotal(a){
+    total = a.reduce((acc, el)=> acc + el.precio ,0);
+
+    pTotal.innerText = total;
+    console.log('este es el precio total ', total);
+    //return total;
+}
+
+// CANTIDAD DE PRODUCTOS EN EL CARRITO 
+let listaJSON = [];
+let cantAgreCarr = document.getElementById('cFav');
+let consultaCant = ()=>{
+    cantAgreCarr.innerText = (JSON.parse(localStorage.getItem('productosCarrito'))).length; //numero de productos agregados al carrito
+}
+
+function lista(a) {  // recibe el codigo del producto seleccionado 
+    let dato = inventario.find(i => i.codigo == a); // busca el producto con el codigo ingresado y guarda el objeto en dato 
+
+    listaJSON.push(dato);
+    console.log('productos agregados al JSON',listaJSON);
+    agregarJson(listaJSON);
+    imprimirTabla(listaJSON);
+    precioTotal(listaJSON);
+}
+
+// TABLA DE COMPRAS
+
+let tabla = document.getElementById('tabla');
+let cant=0; 
+
+// Funcion que imprime objetos en la tabla, recibe un array de objetos
+
+function imprimirTabla(a) {
+    console.log('imprimendo');
+    tabla.innerHTML= ` `;
+
+    a.forEach(el => {
+        let newtr = document.createElement('tr');
+        newtr.innerHTML= `<th id="thCodigo" scope="row"> ${el.codigo}</th>
+        <td id="tdproduco">${el.producto}</td>
+        <td id="tdprecio">$ ${el.precio}</td>
+        <td id="tdcantidad"></td>
+        <td id="tdboton">`
+        tabla.appendChild(newtr);
+    });  
+    consultaCant();
+}
+
+// funcion que recibe un array de objetos y los almacena en el JSON productos carrito
+
+let agregarJson = (a) =>{ guardarLocal('productosCarrito',JSON.stringify(a))}
